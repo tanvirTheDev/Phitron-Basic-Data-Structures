@@ -2,7 +2,6 @@
 #include <queue>
 using namespace std;
 
-
 class Node{
     public:
     int val;
@@ -23,9 +22,9 @@ Node* input_order(){
     queue<Node*> q;
     q.push(root);
 
-    while(!q.empty()){
-        Node* f = q.front();
-        q.pop();
+   while(!q.empty()){
+     Node* f = q.front();
+    q.pop();
 
     int l, r;
     cin >> l >> r;
@@ -38,13 +37,12 @@ Node* input_order(){
     f->left = myLeft;
     f->right = myRight;
 
-
     if(f->left) q.push(f->left);
     if(f->right) q.push(f->right);
-
-    }
-    return root;
+   }
+   return root;
 }
+
 
 
 
@@ -61,24 +59,20 @@ void levelOrder(Node* root){
   }
 }
 
-
-
-int count_leaf_node(Node* root){
-    if(root == NULL){
-        return 0;
-    }
-    if(root->left == NULL && root->right == NULL) return 1;
-    int l = count_leaf_node(root->left);
-    int r = count_leaf_node(root->right);
-    return l + r;
+int max_height(Node* root){
+    if(root == NULL) return 0;
+    if(root->left == NULL && root->right == NULL) return 0;
+    int l = max_height(root->left);
+    int r = max_height(root->right);
+    return max(l, r) + 1;
 }
+
 
 int main()
 {
-  
     Node* root = input_order();
-    levelOrder(root);
-    int cnt = count_leaf_node(root);
-    cout << cnt << endl;
+    // levelOrder(root);
+    int maxH = max_height(root);
+    cout << maxH;
     return 0;
 }
