@@ -67,8 +67,8 @@
 
     //WITH TEXT FILE
 
-    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt.exe && timeout 15s $dir$fileNameWithoutExt.exe < input.txt > output.txt || (echo -n > output.txt && echo 'Time Limit Gone')",
-    "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt.exe && timeout 15s $dir$fileNameWithoutExt.exe < input.txt > output.txt || (echo -n > output.txt && echo 'Time Limit Gone')"
+    "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt.exe && gtimeout 15s $dir$fileNameWithoutExt.exe < input.txt > output.txt || (echo -n > output.txt && echo 'Time Limit Gone')",
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt.exe && gtimeout 15s $dir$fileNameWithoutExt.exe < input.txt > output.txt || (echo -n > output.txt && echo 'Time Limit Gone')"
   },
 
   "window.zoomLevel": 1,
@@ -88,7 +88,8 @@
     "vector": "cpp",
     "string_view": "cpp",
     "initializer_list": "cpp",
-    "regex": "cpp"
+    "regex": "cpp",
+    "queue": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
