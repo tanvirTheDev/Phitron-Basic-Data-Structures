@@ -1,3 +1,8 @@
+// #include <bits/stdc++.h>
+
+// using namespace std;
+
+
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -48,51 +53,23 @@ Node* input_order() {
     return root; 
 }
 
-// void leftView(Node* root) {
-//     if (!root) return;
-//     vector<int> data;
-//     queue<Node*> q;
-//     q.push(root);
-
-//     while (!q.empty()) {
-//         int size = q.size();
-
-//         // first node of this level = left view node
-//         for (int i = 0; i < size; i++) {
-//             Node* node = q.front();
-//             q.pop();
-
-           
-//                 if(node->left) if (i == 0) data.push_back(node->val);
-            
-           
-//             if (node->left) q.push(node->left);
-//             if(node->right) q.push(node->right);
-
-//         }
-
-      
-        
-//     }
-//       // print left view top to bottom
-//     for (int val : data)
-//         cout << val << " ";
-// }
 
 void leftView(Node* root){
     if(!root) return;
+    if(root->left == NULL) return; 
     if(root->left) leftView(root->left);
     if(root->left == NULL && root->right) leftView(root->right);
     cout << root->val << " "; 
 }
 
-void rightView(Node* root){
+void rightView(Node* root, bool skipRoot = false){
     if(!root) return;
-   
-    cout << root->val << " "; 
+
+    if(root->left == NULL && root->right) cout << root->val << " ";
+    else if (!skipRoot) cout << root->val << " "; 
+
     if(root->right) rightView(root->right);
     if(root->right == NULL && root->left) rightView(root->left);
-    
 }
 
 
@@ -106,6 +83,6 @@ void rightView(Node* root){
 int main() {
     Node* root = input_order();
     leftView(root);
-    if (root->right) rightView(root->right);
+    rightView(root, true);
     return 0;
 }
